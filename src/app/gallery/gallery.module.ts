@@ -5,6 +5,10 @@ import { GalleryComponent } from './gallery.component';
 import { ImgMetadataComponent } from './components/img-metadata/img-metadata.component';
 import { ImgViewComponent } from './components/img-view/img-view.component';
 import { ImgTabsComponent } from './components/img-tabs/img-tabs.component';
+import { GalleryService } from './services/gallery.service';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ImgSliderComponent } from './components/img-slider/img-slider.component';
 
 
 @NgModule({
@@ -12,11 +16,15 @@ import { ImgTabsComponent } from './components/img-tabs/img-tabs.component';
     GalleryComponent,
     ImgMetadataComponent,
     ImgViewComponent,
-    ImgTabsComponent
+    ImgTabsComponent,
+    ImgSliderComponent
   ],
   imports: [
     CommonModule,
-    GalleryRoutingModule
-  ]
+    GalleryRoutingModule,
+    ScrollingModule,
+    MatTabsModule
+  ],
+  providers:[]
 })
 export class GalleryModule { }
