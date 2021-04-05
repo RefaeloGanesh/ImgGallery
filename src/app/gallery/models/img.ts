@@ -1,6 +1,8 @@
 export class Img {
-  Id?: number;
-  Size?: number;
-  Name?: string;
-  Url?: string;
+  id?: number;
+  width?: number;
+  height?: number;
+  author?: string;
+  url?: string;
+  download_url?: string;
 }

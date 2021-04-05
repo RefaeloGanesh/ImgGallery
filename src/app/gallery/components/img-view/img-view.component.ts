@@ -14,7 +14,7 @@ export class ImgViewComponent implements OnInit {
   temp? : string;
   ngOnInit(): void {
     this.gallerysrv.onSelectedImgChange().subscribe((i)=>{
-      this.temp = i.Name;
+      this.temp = i.download_url;
     });
   }
 

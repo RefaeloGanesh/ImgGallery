@@ -1,14 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { GalleryModule } from '../gallery.module';
 import { Img } from '../models/img';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private selectedImgSubject = new Subject<Img>();
 
@@ -20,16 +22,7 @@ export class GalleryService {
     this.selectedImgSubject.next(img);
   }
 
-  getImgs(): Array<Img>{
-    return [
-      {Id: 1, Size: 5, Name: "Refael"},
-      {Id: 2, Size: 5, Name: "Refael1"},
-      {Id: 3, Size: 5, Name: "Refael2"},
-      {Id: 4, Size: 5, Name: "Refael3"},
-      {Id: 5, Size: 5, Name: "Refael4"},
-      {Id: 6, Size: 5, Name: "Refael5"},
-      {Id: 7, Size: 5, Name: "Refael6"},
-      {Id: 8, Size: 5, Name: "Refael7"},
-    ]
+  getImgs(): Observable<Img[]>{
+    return this.http.get<Img[]>("https://picsum.photos/v2/list");
   }
 }

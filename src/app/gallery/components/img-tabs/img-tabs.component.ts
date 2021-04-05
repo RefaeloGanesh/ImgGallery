@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Img } from '../../models/img';
 import { GalleryService } from '../../services/gallery.service';
 
 @Component({
@@ -11,9 +12,12 @@ export class ImgTabsComponent implements OnInit {
   constructor(private gallerySrv: GalleryService) { }
 
   ngOnInit(): void {
+    this.gallerySrv.getImgs().subscribe(arr =>{
+      this.all = arr;
+    });
   }
 
-  all = this.gallerySrv.getImgs();
-  fav = [];
+  all: Img[] = [];
+  fav: Img[] = [];
 
 }

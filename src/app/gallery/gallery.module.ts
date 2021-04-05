@@ -8,7 +8,7 @@ import { ImgTabsComponent } from './components/img-tabs/img-tabs.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ImgSliderComponent } from './components/img-slider/img-slider.component';
-
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { ImgSliderComponent } from './components/img-slider/img-slider.component
     CommonModule,
     GalleryRoutingModule,
     ScrollingModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule
   ],
   providers:[]
 })
