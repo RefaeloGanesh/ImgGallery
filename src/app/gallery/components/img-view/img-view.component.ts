@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleryService } from '../../services/gallery.service';
 
 
 @Component({
@@ -9,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImgViewComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private gallerysrv: GalleryService) { }
+  temp? : string;
   ngOnInit(): void {
+    this.gallerysrv.onSelectedImgChange().subscribe((i)=>{
+      this.temp = i.Name;
+    });
   }
 
 }

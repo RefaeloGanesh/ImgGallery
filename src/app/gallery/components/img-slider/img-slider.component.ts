@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Img } from '../../models/img';
+import { GalleryService } from '../../services/gallery.service';
 
 @Component({
   selector: 'app-img-slider',
@@ -8,13 +10,15 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImgSliderComponent implements OnInit {
+  @Input() items : Array<Img> = [];
 
-  constructor() { }
+  constructor(private gallerySrv: GalleryService) { }
 
   ngOnInit(): void {
   }
 
-  items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
-
+  selectImg(img: Img){
+    this.gallerySrv.selectImg(img);
+  }
 
 }
