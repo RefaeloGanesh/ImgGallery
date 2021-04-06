@@ -10,15 +10,22 @@ import { GalleryService } from '../../services/gallery.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImgSliderComponent implements OnInit {
-  @Input() items : Array<Img> = [];
+  @Input() items: Array<Img> = [];
+  firstClick: boolean = false;
+  lastImgId: number = 0;
 
   constructor(private gallerySrv: GalleryService) { }
 
   ngOnInit(): void {
   }
 
-  selectImg(img: Img){
+  selectImg(img: Img) {
     this.gallerySrv.selectImg(img);
   }
+
+  addToFav() {
+    console.log('Add To fav');
+  }
+
 
 }

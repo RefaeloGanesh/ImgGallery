@@ -15,6 +15,8 @@ export class ImgTabsComponent implements OnInit {
     this.gallerySrv.getImgs().subscribe(arr =>{
       this.all = arr;
     });
+
+    this.gallerySrv.onAddingImgToFav().subscribe()
   }
 
   all: Img[] = [];

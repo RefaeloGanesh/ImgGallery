@@ -11,10 +11,10 @@ import { GalleryService } from '../../services/gallery.service';
 export class ImgViewComponent implements OnInit {
 
   constructor(private gallerysrv: GalleryService) { }
-  temp? : string;
+  imgUrl? : string;
   ngOnInit(): void {
     this.gallerysrv.onSelectedImgChange().subscribe((i)=>{
-      this.temp = i.download_url;
+      this.imgUrl = i.download_url;
     });
   }
 
