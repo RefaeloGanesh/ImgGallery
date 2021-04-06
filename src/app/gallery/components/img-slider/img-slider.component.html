@@ -1,6 +1,10 @@
 <div class="cdk-virtual-scroll-data-source-example">
   <cdk-virtual-scroll-viewport  orientation="horizontal" itemSize="50" class="example-viewport">
-    <div *ngFor="let item of items" (click)='selectImg(item)' (dblclick)="addToFav()" class="slider-item">
+    <div *ngFor="let item of items"
+          (click)='selectImg(item)'
+          (dblclick)="addToFav(item)"
+          (mouseenter) ="writeLog(item.author)"
+          class="slider-item">
       <img [src]="item.download_url" height="50" alt="{{item.author}}">
     </div>
   </cdk-virtual-scroll-viewport>

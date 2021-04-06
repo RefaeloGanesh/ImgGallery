@@ -12,13 +12,17 @@ import { registerLocaleData } from '@angular/common';
 export class GalleryService {
 
   constructor(private http: HttpClient) {
-    this.loadLocalStorage();
+    this.favsImg = this.loadLocalStorage();
+
+    this.logSubject.subscribe(logStr => {
+      console.log(logStr);
+    });
   }
 
   private favsImg: Img[] = [];
-
-  private selectedImgSubject = new Subject<Img>();
-  private addImgToFavSubject = new Subject<Img[]>();
+  private selectedImgSubject: Subject<Img> = new Subject<Img>();
+  private addImgToFavSubject: Subject<Img[]> = new Subject<Img[]>();
+  private logSubject: Subject<string> = new Subject<string>();
 
   private loadLocalStorage(): Img[] {
     try {
@@ -27,6 +31,12 @@ export class GalleryService {
       console.log(error);
       return [];
     }
+  }
+
+  private updateLocalStorage(): void {
+    if (this.favsImg.length == 0)
+      return;
+    localStorage.setItem("Favs", JSON.stringify(this.favsImg));
   }
 
   onSelectedImgChange(): Observable<Img> {
@@ -45,8 +55,18 @@ export class GalleryService {
     return this.addImgToFavSubject;
   }
 
+  getFavsImg(): Img[] {
+    return this.favsImg;
+  }
+
   addImgToFav(img: Img): void {
     this.favsImg.push(img);
     this.addImgToFavSubject.next(this.favsImg);
+    this.updateLocalStorage();
   }
+
+  getLogger(): Subject<string> {
+    return this.logSubject;
+  }
+
 }

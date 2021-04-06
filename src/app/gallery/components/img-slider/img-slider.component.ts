@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 import { Img } from '../../models/img';
 import { GalleryService } from '../../services/gallery.service';
 
@@ -13,18 +14,26 @@ export class ImgSliderComponent implements OnInit {
   @Input() items: Array<Img> = [];
   firstClick: boolean = false;
   lastImgId: number = 0;
+  loger?: Subject<string>;
 
-  constructor(private gallerySrv: GalleryService) { }
+  constructor(public gallerySrv: GalleryService) {
+
+   }
 
   ngOnInit(): void {
+    this.loger = this.gallerySrv.getLogger();
   }
 
   selectImg(img: Img) {
     this.gallerySrv.selectImg(img);
   }
 
-  addToFav() {
-    console.log('Add To fav');
+  addToFav(img: Img) {
+    this.gallerySrv.addImgToFav(img);
+  }
+
+  writeLog(logStr?: string): void{
+    this.loger?.next(logStr);
   }
 
 

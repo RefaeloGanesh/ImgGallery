@@ -12,11 +12,15 @@ export class ImgTabsComponent implements OnInit {
   constructor(private gallerySrv: GalleryService) { }
 
   ngOnInit(): void {
+    this.fav = this.gallerySrv.getFavsImg();
+
     this.gallerySrv.getImgs().subscribe(arr =>{
       this.all = arr;
     });
 
-    this.gallerySrv.onAddingImgToFav().subscribe()
+    this.gallerySrv.onAddingImgToFav().subscribe(arr =>{
+      this.fav = arr;
+    });
   }
 
   all: Img[] = [];
