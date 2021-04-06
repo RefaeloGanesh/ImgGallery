@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } 
 import { Subject } from 'rxjs/internal/Subject';
 import { Img } from '../../models/img';
 import { GalleryService } from '../../services/gallery.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-img-slider',
@@ -12,13 +14,14 @@ import { GalleryService } from '../../services/gallery.service';
 })
 export class ImgSliderComponent implements OnInit {
   @Input() items: Array<Img> = [];
+  @Input() enableAddFavs: boolean = false;
   firstClick: boolean = false;
   lastImgId: number = 0;
   loger?: Subject<string>;
 
-  constructor(public gallerySrv: GalleryService) {
+  constructor(public gallerySrv: GalleryService, private _snackBar: MatSnackBar) {
 
-   }
+  }
 
   ngOnInit(): void {
     this.loger = this.gallerySrv.getLogger();
@@ -29,12 +32,20 @@ export class ImgSliderComponent implements OnInit {
   }
 
   addToFav(img: Img) {
-    this.gallerySrv.addImgToFav(img);
+    if (this.enableAddFavs) {
+      this.gallerySrv.addImgToFav(img);
+      this.openSnackBar("Img Added To Favorits");
+    }
   }
 
-  writeLog(logStr?: string): void{
+  writeLog(logStr?: string): void {
     this.loger?.next(logStr);
   }
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Close', {
+      duration: 2000,
+    });
+  }
 
 }

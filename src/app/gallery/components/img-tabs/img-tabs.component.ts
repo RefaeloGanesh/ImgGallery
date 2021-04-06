@@ -25,5 +25,4 @@ export class ImgTabsComponent implements OnInit {
 
   all: Img[] = [];
   fav: Img[] = [];
-
 }

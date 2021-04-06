@@ -9,6 +9,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ImgSliderComponent } from './components/img-slider/img-slider.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import {MatCardModule} from '@angular/material/card';
     GalleryRoutingModule,
     ScrollingModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+
   ],
   providers:[]
 })
